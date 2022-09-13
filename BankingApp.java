@@ -39,38 +39,15 @@ public class BankingApp {
     public static void addNewAccount(Bank bank, Scanner console) {
         System.out.print("Enter name: ");
         String name = console.next();
+        Person person = bank.searchPersonByName(name);
 
-        if (bank.searchPersonByName(name) == null) {
-            Person person = new Person(name);
-            System.out.println("Choose account type: ");
-            System.out.println("1: Student Account");
-            System.out.println("2: Spending Account");
-            System.out.print("Enter option: ");
-            int accountType = console.nextInt();
-
-            while (accountType != 1 && accountType != 2) {
-                System.out.println("Invalid account. Please try again...");
-                accountType = console.nextInt();
-            }
-
-            System.out.print("Enter account number: ");
-            String accountNumber = console.next();
-            System.out.print("Enter account balance: ");
-            double balance = console.nextDouble();
-
-            if (accountType == 1) {
-                System.out.print("Enter max deposit amount: ");
-                double depositAmount = console.nextDouble();
-                StudentAccount studentAccount = new StudentAccount(balance, accountNumber, depositAmount);
-                person.addAccount(studentAccount);
-            } else {
-                System.out.print("Enter max withdrawal amount: ");
-                double withdrawalAmount = console.nextDouble();
-                SpendingAccount spendingAccount = new SpendingAccount(balance, accountNumber, withdrawalAmount);
-                person.addAccount(spendingAccount);
-            }
-
+        if (person == null) {
+            person = new Person(name);
+            addNewPerson(console, person);
             bank.addPerson(person);
+            person.listAccounts();
+        } else {
+            addNewPerson(console, person);
             person.listAccounts();
         }
     }
@@ -112,6 +89,36 @@ public class BankingApp {
             person.checkAccountDetails(account);
         } else {
             System.out.println("Account number doesn't exist!");
+        }
+    }
+
+    private static void addNewPerson(Scanner console, Person person) {
+        System.out.println("Choose account type: ");
+        System.out.println("1: Student Account");
+        System.out.println("2: Spending Account");
+        System.out.print("Enter option: ");
+        int accountType = console.nextInt();
+
+        while (accountType != 1 && accountType != 2) {
+            System.out.println("Invalid account. Please try again...");
+            accountType = console.nextInt();
+        }
+
+        System.out.print("Enter account number: ");
+        String accountNumber = console.next();
+        System.out.print("Enter account balance: ");
+        double balance = console.nextDouble();
+
+        if (accountType == 1) {
+            System.out.print("Enter max deposit amount: ");
+            double depositAmount = console.nextDouble();
+            StudentAccount studentAccount = new StudentAccount(balance, accountNumber, depositAmount);
+            person.addAccount(studentAccount);
+        } else {
+            System.out.print("Enter max withdrawal amount: ");
+            double withdrawalAmount = console.nextDouble();
+            SpendingAccount spendingAccount = new SpendingAccount(balance, accountNumber, withdrawalAmount);
+            person.addAccount(spendingAccount);
         }
     }
 }
