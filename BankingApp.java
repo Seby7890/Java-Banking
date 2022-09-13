@@ -43,11 +43,11 @@ public class BankingApp {
 
         if (person == null) {
             person = new Person(name);
-            addNewPerson(console, person);
+            addNewPerson(person, console);
             bank.addPerson(person);
             person.listAccounts();
         } else {
-            addNewPerson(console, person);
+            addNewPerson(person, console);
             person.listAccounts();
         }
     }
@@ -92,7 +92,7 @@ public class BankingApp {
         }
     }
 
-    private static void addNewPerson(Scanner console, Person person) {
+    private static void addNewPerson(Person person, Scanner console) {
         System.out.println("Choose account type: ");
         System.out.println("1: Student Account");
         System.out.println("2: Spending Account");
