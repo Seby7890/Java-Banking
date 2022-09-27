@@ -41,8 +41,8 @@ Create a class called Bank
 - Methods:
 	- isPersonAvailable - checks if a person is already on the bank or not
 	- addPerson - adds a new person in the bank if this person is not already in the list
-	- searchPersonByName - searches for a person by it's name
-	- searchPersonByAccountNumber - searches for a person by it's account number
+	- searchPersonByName - searches for a person by its name
+	- searchPersonByAccountNumber - searches for a person by its account number
 
 Create a class called BankingApp. The class will have the main method, where a list of clients will be created and a new bank.
 - Methods:
